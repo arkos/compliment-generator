@@ -1,0 +1,50 @@
+# Keep Alertmanager disabled for this initial local setup.
+alertmanager:
+  enabled: false
+
+grafana:
+  enabled: true
+  persistence:
+    enabled: false
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      memory: 1Gi
+
+prometheus:
+  prometheusSpec:
+    retention: 24h
+    scrapeInterval: 15s
+    evaluationInterval: 15s
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        memory: 768Mi
+
+    # Discover ServiceMonitors in the monitoring namespace.
+    serviceMonitorNamespaceSelector:
+      matchLabels:
+        kubernetes.io/metadata.name: monitoring
+
+    serviceMonitorSelector:
+      matchLabels:
+        release: monitoring
+  
+metadata:
+  name: compliment-generator
+  labels:
+    app: compliment-generator
+
+# These control-plane endpoints often need extra configuration on Minikube.
+kubeEtcd:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false

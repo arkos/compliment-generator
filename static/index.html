@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0F172A">
+  <title>Compliment Generator | Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/script.js" defer></script>
+</head>
+<body>
+  <main class="dashboard">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">COMPLIMENT GENERATOR / API V1</p>
+        <h1>Command Center</h1>
+        <p class="subtitle">A little encouragement. Full request visibility.</p>
+      </div>
+      <span id="status" class="status" data-state="idle" role="status">Awaiting request</span>
+    </header>
+    <section class="card" aria-labelledby="payload-heading">
+      <div class="card-header">
+        <h2 id="payload-heading">Generated compliment</h2>
+        <span class="tag">JSON API</span>
+      </div>
+      <div id="payload-region" aria-busy="false">
+        <p id="compliment" class="compliment" aria-live="polite">Ready when you are. Request your first compliment.</p>
+      </div>
+      <button id="generate-button" type="button">Generate compliment <span aria-hidden="true">↗</span></button>
+      <p id="error" class="error" role="alert" hidden></p>
+    </section>
+    <section class="card" aria-labelledby="telemetry-heading">
+      <div class="card-header">
+        <h2 id="telemetry-heading">Latest successful request</h2>
+        <span class="tag">TELEMETRY</span>
+      </div>
+      <dl class="metadata">
+        <div><dt>HTTP status</dt><dd id="http-status">—</dd></div>
+        <div><dt>Client latency</dt><dd id="latency">—</dd></div>
+        <div><dt>Trace ID</dt><dd id="trace-id">—</dd></div>
+        <div><dt>Server timestamp (UTC)</dt><dd id="timestamp">—</dd></div>
+      </dl>
+      <p class="note">Client latency includes the network round trip and reading the response.</p>
+      <details>
+        <summary>Inspect response payload</summary>
+        <pre><code id="raw-response">No response yet.</code></pre>
+      </details>
+    </section>
+    <footer>
+      <code>GET /api/v1/compliments/random</code>
+      <nav aria-label="Service endpoints">
+        <a href="/healthz">Liveness</a>
+        <a href="/readyz">Readiness</a>
+        <a href="/metrics">Metrics</a>
+      </nav>
+    </footer>
+  </main>
+</body>
+</html>
